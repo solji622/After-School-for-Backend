@@ -1,5 +1,7 @@
 package remoteControl;
 
+import universal.SamsungTv;
+
 public class UniversalRemote implements RemoteControl{
     private TV pairedTV;
 
@@ -40,18 +42,62 @@ public class UniversalRemote implements RemoteControl{
 
     @Override
     public void nextChannel() {
-        // 페어링된 TV가 있고, TV의 전원이 켜져있을 때만 채널 이동 가능
+        // 페어링된 TV가 있고, TV의 전원이 켜져있을 때만 다음 채널 이동 가능
         if (pairedTV != null && pairedTV.isPaired() && pairedTV.isPowerOn()) {
-            previousChannel();
+            int currentChannel = pairedTV.getCurrentChannel();
+            if (currentChannel == 999) {
+                pairedTV.changeChannel(0);
+            } else {
+                pairedTV.changeChannel(currentChannel+1);
+            }
         } else if (pairedTV == null || !pairedTV.isPaired()) {
             System.out.println("No TV is paired.");
         } else {
-            System.out.println("The TV is OFF. Cannot next channel.");
+            System.out.println("The TV is OFF. Cannot Change channel.");
         }
     }
 
     @Override
     public void previousChannel() {
-
+        // 페어링된 TV가 있고, TV의 전원이 켜져있을 때만 이전 채널 이동 가능
+        if (pairedTV != null && pairedTV.isPaired() && pairedTV.isPowerOn()) {
+            int currentChannel = pairedTV.getCurrentChannel();
+            if (currentChannel == 0) {
+                pairedTV.changeChannel(999);
+            } else {
+                pairedTV.changeChannel(currentChannel-1);
+            }
+        } else if (pairedTV == null || !pairedTV.isPaired()) {
+            System.out.println("No TV is paired.");
+        } else {
+            System.out.println("The TV is OFF. Cannot Change channel.");
+        }
     }
+
+    @Override
+    public void adjustVolume(int level) {
+        // 페어링된 TV가 있고, TV의 전원이 켜져있을 때만 이전 채널 이동 가능
+        if (pairedTV != null && pairedTV.isPaired() && pairedTV.isPowerOn()) {
+            pairedTV.adjustVolume(level);
+        } else if (pairedTV == null || !pairedTV.isPaired()) {
+            System.out.println("No TV is paired.");
+        } else {
+            System.out.println("The TV is OFF. Cannot adjust channel.");
+        }
+    }
+
+    public void watchSteaming() {
+        // 페어링된 TV가 Samsung TV인 경우 넷플릭스 시청
+        if (pairedTV instanceof SamsungTV) {
+            ((SamsungTV) pairedTV).watchNetflix();
+        } else if (pairedTV instanceof LGTV) {
+            ((LGTV) pairedTV).watchYoutube();
+        } else if (pairedTV instanceof AppleTV) {
+            ((AppleTV) pairedTV).watchWavve();
+        } else {
+            System.out.println("No streaming available for this TV");
+        }
+    }
+
+
 }
