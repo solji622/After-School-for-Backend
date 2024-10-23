@@ -4,26 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signUp Page</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
-        <h1>회원가입</h1>
-        <form action="#">
+        <h2>회원가입</h2>
+        <form action="#" id="signUpForm">
 
-        <div class="inputs">
-            <input type="text" id="name" placeholder="이름" required>
-            <input type="text" id="email" placeholder="이메일" required>
-            <input type="text" id="pw" placeholder="비밀번호" required>
-            <input type="text" id="pwCheck" placeholder="비밀번호 확인" required>
+        <div class="input-group">
+            <input type="text" name="name" placeholder="이름" required>
         </div>
 
-        <div class="dataSend">
-            <input type="submit" value="회원가입">
+        <div class="input-group">
+            <input type="email" name="email" id="email" placeholder="이메일" required>
+            <!-- 조건에 일치하지 않으면 말풍선 띄울 것 -->
+            <span class="error-message balloon" id="emailError"></span>
         </div>
 
-        <div class="login">
-            <u><a href="../loginPage/index.html">이미 계정이 있으신가요? 로그인</a></u>
+        <div class="input-group">
+            <input type="password" name="pw" id="pw" placeholder="비밀번호" required>
+            <span class="error-message balloon" id="pwError"></span>
         </div>
+
+        <div class="input-group">
+            <input type="password" name="confirmPw" id="confirmPw" placeholder="비밀번호 확인" required>
+            <span class="error-message balloon" id="confirmPwError"></span>
+        </div>
+
+        <button type="submit">회원가입</button>
+
+        <a href="../loginPage/index.html" class="login_link">이미 계정이 있으신가요? 로그인</a>
     </form>
     </div>
 </body>
