@@ -29,6 +29,9 @@
         {{/article}}
         </tbody>
     </table>
+    <a href="/article/{{article.id}}/edit" class="btn btn-primary">Edit</a>
+    <a href="/article/{{article.id}}/delete" class="btn btn-danger">Delete</a>
+    <!-- article이라는 모델에 담아왔기에 article 불러옴 (테이블과 같은 역할) -->
     <a href="/article">Go To ArticleList</a>
 </body>
 </html>
