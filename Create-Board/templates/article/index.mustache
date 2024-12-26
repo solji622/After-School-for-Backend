@@ -1,0 +1,38 @@
+{{>layout/header}}
+
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {{#articleList}} <!-- 이 범위에서 articleList 사용함 -->
+    <tr>
+        <td>{{id}}</td>
+        <td><a href="/article/{{id}}">{{title}}</a></td>
+        <td>{{content}}</td>
+    </tr>
+    {{/articleList}}
+    </tbody>
+</table>
+
+<a href="/article/new">New Article</a>
+
+</body>
+</html>
+
+{{>layout/footer}}

@@ -1,0 +1,40 @@
+{{>layout/header}}
+
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Content</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {{#article}} <!-- 이 범위에서 article을 사용함 -->
+            <tr>
+                <td>{{id}}</td>
+                <td>{{title}}</td>
+                <td>{{content}}</td>
+            </tr>
+        {{/article}}
+        </tbody>
+    </table>
+    <a href="/article/{{article.id}}/edit" class="btn btn-primary">Edit</a>
+    <a href="/article/{{article.id}}/delete" class="btn btn-danger">Delete</a>
+    <!-- article이라는 모델에 담아왔기에 article 불러옴 (테이블과 같은 역할) -->
+    <a href="/article">Go To ArticleList</a>
+</body>
+</html>
+
+{{>comments/_comments}}
+{{>layout/footer}}
